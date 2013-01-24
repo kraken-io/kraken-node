@@ -297,7 +297,7 @@ var kraken = new Kraken({
 var opts = {
     file: '/path/to/image/file.jpg',
     wait: true,
-    s3_store: {
+    cf_store: {
         user: 'your-rackspace-username',
         key: 'your-rackspace-api-key',
         container: 'destination-container'
