@@ -67,7 +67,7 @@ We recommend [requestb.in](http://requestb.in) as an easy way to capture optimiz
         "api_key": "your-api-key",
         "api_secret": "your-api-secret"
     },
-    "url": "http://awesome-website.com/images/header.jpg",
+    "url": "http://image-url.com/file.jpg",
     "callback_url": "http://awesome-website.com/kraken_results"
 }
 ````
@@ -120,7 +120,7 @@ var kraken = new Kraken({
 });
 
 var opts = {
-    url: 'static.kraken-cdn.net/images/body-header.jpg',
+    url: 'http://image-url.com/file.jpg',
     wait: true
 };
 
@@ -138,11 +138,11 @@ Depending on a choosen response option (Wait or Callback URL) in the `data` obje
 ````js
 {
     success: true,
-    file_name: 'body-header.jpg',
+    file_name: 'file.jpg',
     original_size: 30664,
     kraked_size: 577,
     saved_bytes: 30087,
-    kraked_url: 'https://api.kraken.io/files/8e01768caa69d488/body-header.jpg'
+    kraked_url: 'https://api.kraken.io/files/8e01768caa69d488/file.jpg'
 }
 ````
 
