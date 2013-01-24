@@ -1,7 +1,7 @@
 kraken - a Node.js module for Kraken.io API
 ===========
 
-[![Build Status](https://secure.travis-ci.org/matylla/node-kraken.png?branch=master)](http://travis-ci.org/kraken-io/kraken-node)
+[![Build Status](https://secure.travis-ci.org/kraken-io/kraken-node.png?branch=master)](http://travis-ci.org/kraken-io/kraken-node)
 
 With this Node module you can plug into the power and speed of [Kraken.io](http://kraken.io/) Image Optimizer.
 
