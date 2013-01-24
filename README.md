@@ -7,7 +7,7 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 
 ## Getting Started
 
-First you need to choose and sign-up for a Kraken API plan [Kraken Account](http://kraken.io/plans/) and obtain your unique **API Key** and **API Secret**. You will find both under [API Credentials](http://kraken.io/account/api-credentials). Once you have set-up your account, you can start using Kraken API in your applications.
+First you need to sign-up for a [Kraken API](http://kraken.io/plans/) and obtain your unique **API Key** and **API Secret**. You will find both under [API Credentials](http://kraken.io/account/api-credentials). Once you have set-up your account, you can start using Kraken API in your applications.
 
 ## Installation
 
