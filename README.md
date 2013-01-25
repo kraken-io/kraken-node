@@ -1,4 +1,4 @@
-kraken - a Node.js module for Kraken.io API
+Node.js module for Kraken.io API
 ===========
 
 [![Build Status](https://secure.travis-ci.org/kraken-io/kraken-node.png?branch=master)](http://travis-ci.org/kraken-io/kraken-node)
