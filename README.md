@@ -86,11 +86,11 @@ We recommend [requestb.in](http://requestb.in) as an easy way to capture optimiz
 {
     "id": "0194b7d7cb"
     "success": true,
-    "file_name": "header.jpg",
+    "file_name": "file.jpg",
     "original_size": 324520,
     "kraked_size": 165358,
     "saved_bytes": 159162,
-    "kraked_url": "https://api.kraken.io/files/b15e7f341645a65a/header.jpg"
+    "kraked_url": "https://api.kraken.io/files/b15e7f341645a65a/file.jpg"
 }
 ````
 
