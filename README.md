@@ -313,7 +313,7 @@ kraken.upload(opts, function(data) {
 });
 ````
 
-The `$data` array will contain `kraked_url` key pointing directly to the optimized file location in your Rackspace Cloud Files account:
+The `data` object will contain `kraked_url` key pointing directly to the optimized file location in your Rackspace Cloud Files account:
 
 ````js
 {
