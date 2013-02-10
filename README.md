@@ -157,7 +157,7 @@ If no saving were found, the API will return an object containing `"success":fal
 
 ## Usage - Image Upload
 
-If you want to upload your images directly to Kraken API use the `kraken.upload()` method. You will need to provide two mandatory parameters in an array - `file` which is the absolute path to the file and `wait` or `callback_url`.
+If you want to upload your images directly to Kraken API use the `kraken.upload()` method. You will need to provide two mandatory parameters - `file` which is the absolute path to the file and `wait` or `callback_url`.
 
 In the `data` object you will find the same optimization properties as with `url` option above.
 
