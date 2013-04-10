@@ -123,7 +123,7 @@ var kraken = new Kraken({
 
 ## Usage - Image URL
 
-To optimize an image by providing image URL use the `kraken.url()` method. You will need to provide two mandatory parameters in an array - `url` to the image and `wait` or `callback_url`:
+To optimize an image by providing image URL use the `kraken.url()` method. You will need to provide two mandatory parameters - `url` to the image and `wait` or `callback_url`:
 
 ````js
 var Kraken = require('kraken');
