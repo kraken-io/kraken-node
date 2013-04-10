@@ -215,7 +215,7 @@ var opts = {
 PNG images will be converted from 24-bit to paletted 8-bit with full alpha channel. This process is called PNG quantization in RGBA format and means the amout of colours used in an image will be reduced to 256 while maintaining all information about alpha transparency.
 
 ### JPEG Images
-For lossy JPEG optimizations we use an excellent library called [imgmin](https://github.com/rflynn/imgmin) by [Ryan Flynn](http://www.parseerror.com/). This library generates several versions of an image at multiple different quality settings, and finds the version with the mean pixel error rate nearest to but not exceeding 1.0. This ensures your JPEG image will be at the smallest size with the highest possible quality.
+For lossy JPEG optimization Kraken will generate multiple copies of the input image using different quality settings. It will then pick the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.
 
 ## Image Resizing
 
