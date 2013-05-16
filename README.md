@@ -25,7 +25,7 @@ First you need to sign-up for the [Kraken API](http://kraken.io/plans/) and obta
 
 ## Installation
 
-    npm install kraken
+    npm install kraken --save
 
 ## How to use
 
