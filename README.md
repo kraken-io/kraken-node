@@ -283,15 +283,12 @@ WebP is a new image format introduced by Google in 2010 which supports both loss
 To recompress your PNG or JPEG files into WebP format simply set `"webp": true` flag in your request JSON. You can also optionally set `"lossy": true` flag to leverage WebP's lossy compression:
 
 ````js
-{
-    "auth": {
-        "api_key": "your-api-key",
-        "api_secret": "your-api-secret"
-    },
-    "url": "http://awesome-website.com/images/header.jpg",
-    "webp": true,
-    "lossy": true
-}
+var opts = {
+    file: '/path/to/image/file.jpg',
+    wait: true,
+    webp: true,
+    lossy: true
+};
 ````
 
 ## Amazon S3 and Rackspace Cloud Files
