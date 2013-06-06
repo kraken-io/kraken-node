@@ -6,6 +6,7 @@ Node.js module for Kraken.io API
 With this Node module you can plug into the power and speed of [Kraken.io](http://kraken.io/) Image Optimizer.
 
 * [Getting Started](#getting-started)
+* [Optimization Process](#optimization-process)
 * [How To Use](#how-to-use)
 * [Wait and Callback URL](#wait-and-callback-url)
   * [Wait Option](#wait-option)
@@ -23,6 +24,23 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 ## Getting Started
 
 First you need to sign-up for the [Kraken API](http://kraken.io/plans/) and obtain your unique **API Key** and **API Secret**. You will find both under [API Credentials](http://kraken.io/account/api-credentials). Once you have set up your account, you can start using Kraken API in your applications.
+
+## Optimization Process
+
+**JPEG Images**
+
+For JPEGs Kraken does a vast array of optimizations. It strips all metadata found in a given image, optimizes Huffman tables, converts image to progressive format and tries a variety of custom progressive scans to find best structure per image.
+
+For lossy JPEG optimizations we additionaly use imgmin library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.
+
+**PNG Images**
+
+Kraken dynamically chooses best compression and optimization algorithms and their optimal settings for a given PNG to ensure an outstanding image quality with the minimum file weight.
+
+**GIF Images**
+
+Since Kraken supports GIF to PNG8 conversion and optimization (because PNGs are almost always superior to GIFs) your static GIF images will be returned as optimized PNG files. In this case you have to change file extensions in your websites or applications.
+Optimized GIF animations will always be returned as standard animation GIF files.
 
 ## Installation
 
@@ -216,7 +234,7 @@ var opts = {
 PNG images will be converted from 24-bit to paletted 8-bit with full alpha channel. This process is called PNG quantization in RGBA format and means the amout of colours used in an image will be reduced to 256 while maintaining all information about alpha transparency.
 
 ### JPEG Images
-For lossy JPEG optimizations we additionaly use [imgmin](https://github.com/rflynn/imgmin) library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.
+For lossy JPEG optimizations we use [imgmin](https://github.com/rflynn/imgmin) library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.
 
 ## Image Resizing
 
