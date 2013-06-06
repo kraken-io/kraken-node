@@ -392,7 +392,7 @@ If your container is CDN-enabled, the optimization results will contain `kraked_
 
 ````js
 {
-    kraked_url: http://e9ffc04970a269a54eeb-cc00fdd2d4f11dffd931005c9e8de53a.r2.cf1.rackcdn.com/path/to/file.jpg
+    kraked_url: "http://e9ffc04970a269a54eeb-cc00fdd2d4f11dffd931005c9e8de53a.r2.cf1.rackcdn.com/path/to/file.jpg"
 }
 ````
 
@@ -400,7 +400,7 @@ If your container is not CDN-enabled `kraked_url` will point to the optimized im
 
 ````js
 {
-    kraked_url: http://dl.kraken.io/ecdfa5c55d5668b1b5fe9e420554c4ee/file.jpg
+    kraked_url: "http://dl.kraken.io/ecdfa5c55d5668b1b5fe9e420554c4ee/file.jpg"
 }
 ````
 
