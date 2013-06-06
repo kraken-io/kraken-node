@@ -89,7 +89,7 @@ With the `wait` option turned on for every request to the API, the connection wi
     "original_size": 324520,
     "kraked_size": 165358,
     "saved_bytes": 159162,
-    "kraked_url": "https://api.kraken.io/d1aacd2a2280c2ffc7b4906a09f78f46/header.jpg"
+    "kraked_url": "http://dl.kraken.io/d1aacd2a2280c2ffc7b4906a09f78f46/header.jpg"
 }
 ````
 
@@ -130,7 +130,7 @@ We recommend [requestb.in](http://requestb.in) as an easy way to capture optimiz
     "original_size": 324520,
     "kraked_size": 165358,
     "saved_bytes": 159162,
-    "kraked_url": "https://api.kraken.io/18fede37617a787649c3f60b9f1f280d/file.jpg"
+    "kraked_url": "http://dl.kraken.io/18fede37617a787649c3f60b9f1f280d/file.jpg"
 }
 ````
 
@@ -182,7 +182,7 @@ Depending on a choosen response option (Wait or Callback URL) in the `data` obje
     original_size: 30664,
     kraked_size: 577,
     saved_bytes: 30087,
-    kraked_url: 'https://api.kraken.io/d1aacd2a2280c2ffc7b4906a09f78f46/file.jpg'
+    kraked_url: 'http://dl.kraken.io/d1aacd2a2280c2ffc7b4906a09f78f46/file.jpg'
 }
 ````
 
@@ -388,12 +388,18 @@ kraken.upload(opts, function(data) {
 });
 ````
 
-The `data` object will contain `kraked_url` pointing directly to the optimized file in your Rackspace Cloud Files account:
+If your container is CDN-enabled, the optimization results will contain `kraked_url` which points directly to the optimized file location in your Cloud Files account, for example:
 
 ````js
 {
-    kraked_url: "http://e9ffc04970a269a54eeb-cc00fdd2d4f11dffd931005c9e8de53a.r2.cf1.rackcdn.com/path/to/file.jpg"
+    http://e9ffc04970a269a54eeb-cc00fdd2d4f11dffd931005c9e8de53a.r2.cf1.rackcdn.com/path/to/file.jpg
 }
+````
+
+If your container is not CDN-enabled `kraked_url` will point to the optimized image URL in the Kraken API:
+
+````js
+http://dl.kraken.io/ecdfa5c55d5668b1b5fe9e420554c4ee/file.jpg
 ````
 
 ## LICENSE - MIT
