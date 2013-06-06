@@ -14,7 +14,7 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 * [Authentication](#authentication)
 * [Usage - Image URL](#usage---image-url)
 * [Usage - Image Upload](#usage---image-upload)
-* [Lossy Optimizations](#lossy-optimizations)
+* [Lossy Optimization](#lossy-optimization)
 * [Image Resizing](#image-resizing)
 * [WebP Compression](#webp-compression)
 * [Amazon S3 and Rackspace Cloud Files Integration](#amazon-s3-and-rackspace-cloud-files)
