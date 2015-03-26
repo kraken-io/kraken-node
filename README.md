@@ -288,6 +288,7 @@ Kraken API allows you to store optimized images directly in your S3 bucket or Cl
 - `key` - Your unique Amazon "Access Key ID".
 - `secret` - Your unique Amazon "Secret Access Key".
 - `bucket` - Name of a destination container on your Amazon S3 account.
+- `region` - Name of the region your S3 bucket is located in.
 
 **Optional Parameters:**
 - `path` - Destination path in your S3 bucket (e.g. `"images/layout/header.jpg"`). Defaults to root `"/"`.
@@ -309,7 +310,8 @@ var opts = {
     s3_store: {
         key: 'your-amazon-access-key',
         secret: 'your-amazon-secret-key',
-        bucket: 'destination-bucket'
+        bucket: 'destination-bucket',
+        region: 'us-east-1'
     }
 };
 
