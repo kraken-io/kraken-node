@@ -167,12 +167,12 @@ Depending on a choosen response option (Wait or Callback URL) in the `data` obje
 }
 ````
 
-If no saving were found, the API will return an object containing `"success":false` and a proper error message:
+If no saving were found, the API will return an object containing `"success":true` and will report saved_bytes of 0:
 
 ````js
 {
-    success: false,
-    error: 'This image can not be optimized any further'
+    success: true,
+    saved_bytes: 0,
 }
 ````
 
