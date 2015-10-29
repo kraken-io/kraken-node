@@ -28,11 +28,11 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 
 ## Getting Started
 
-First you need to sign-up for the [Kraken API](http://kraken.io/plans/) and obtain your unique **API Key** and **API Secret**. You will find both under [API Credentials](http://kraken.io/account/api-credentials). Once you have set up your account, you can start using Kraken API in your applications.
+First you need to sign-up for the [Kraken API](https://kraken.io/plans/) and obtain your unique **API Key** and **API Secret**. You will find both under [API Credentials](https://kraken.io/account/api-credentials). Once you have set up your account, you can start using Kraken.io's image optimization API in your applications.
 
 ## Downloading Images
 
-Remember - never link to optimized images offered to download. You have to download them first, and then replace them in your websites or applications. Due to security reasons optimized images are available on our servers **for one hour** only.
+Remember: never link to optimized images offered to download. You have to download them first, and then replace them in your websites or applications. Optimized images are available on our servers **for one hour** only, after which they are permanently deleted.
 
 ## How to use
 
@@ -149,7 +149,7 @@ kraken.url(opts, function(data) {
     if (data.success) {
         console.log('Success. Optimized image URL: %s', data.kraked_url);
     } else {
-        console.log('Fail. Error message: %s', data.error);
+        console.log('Failed. Error message: %s', data.message);
     }
 });
 ````
@@ -199,7 +199,7 @@ kraken.upload(opts, function(data) {
     if (data.success) {
         console.log('Success. Optimized image URL: %s', data.kraked_url);
     } else {
-        console.log('Fail. Error message: %s', data.error);
+        console.log('Fail. Error message: %s', data.message);
     }
 });
 ````
@@ -250,7 +250,7 @@ kraken.upload(opts, function(data) {
     if (data.success) {
         console.log('Success. Optimized image URL: %s', data.kraked_url);
     } else {
-        console.log('Fail. Error message: %s', data.error);
+        console.log('Failed. Error message: %s', data.message);
     }
 });
 ````
@@ -319,7 +319,7 @@ kraken.upload(opts, function(data) {
     if (data.success) {
         console.log('Success. Optimized image URL: %s', data.kraked_url);
     } else {
-        console.log('Fail. Error message: %s', data.error);
+        console.log('Failed. Error message: %s', data.message);
     }
 });
 ````
@@ -366,7 +366,7 @@ kraken.upload(opts, function(data) {
     if (data.success) {
         console.log('Success. Optimized image URL: %s', data.kraked_url);
     } else {
-        console.log('Fail. Error message: %s', data.error);
+        console.log('Failed. Error message: %s', data.message);
     }
 });
 ````
