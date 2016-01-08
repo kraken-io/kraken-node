@@ -1,9 +1,9 @@
 {
   "name": "kraken",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": {
-    "name": "Przemek Matylla",
-    "email": "przemek@matylla.pl"
+    "name": "Kraken.io",
+    "email": "support@kraken.io"
   },
   "description": "Plug into the power and speed of Kraken.io Image Optimizer",
   "homepage": "https://github.com/kraken-io/kraken-node",
@@ -12,13 +12,19 @@
     "type": "git",
     "url": "https://github.com/kraken-io/kraken-node.git"
   },
-  "keywords": ["kraken", "kraken.io", "image optimizer"],
+  "keywords": [
+    "kraken",
+    "kraken.io",
+    "image optimizer",
+    "image optimiser"
+  ],
   "license": "MIT",
   "engine": {
-    "node": ">=0.6"
+    "node": ">=0.8"
   },
   "dependencies": {
+    "mime": "1.2.9",
     "multiparter": "0.1.4",
-    "mime": "1.2.9"
+    "request": "^2.67.0"
   }
 }
