@@ -178,12 +178,13 @@ If no saving were found, the API will return an object containing `"success":tru
 
 ## Usage - Image Upload
 
-If you want to upload your images directly to Kraken API use the `kraken.upload()` method. You will need to provide two mandatory parameters - `file` which is the absolute path to the file and `wait` or `callback_url`.
+If you want to upload your images directly to Kraken API use the `kraken.upload()` method. You will need to provide two mandatory parameters - `file` which is either a string containing a path to the file or a Stream Object and `wait` or `callback_url`.
 
 In the `data` object you will find the same optimization properties as with `url` option above.
 
 ````js
-var Kraken = require('kraken');
+var Kraken = require('kraken'),
+    fs = require('fs');
 
 var kraken = new Kraken({
     api_key: 'your-api-key',
@@ -191,11 +192,11 @@ var kraken = new Kraken({
 });
 
 var opts = {
-    file: '/path/to/image/file.jpg',
+    file: fs.createReadStream('file.jpg'),
     wait: true
 };
 
-kraken.upload(opts, function(data) {
+kraken.upload(opts, function (data) {
     if (data.success) {
         console.log('Success. Optimized image URL: %s', data.kraked_url);
     } else {
