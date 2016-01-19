@@ -1,6 +1,6 @@
 {
   "name": "kraken",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": {
     "name": "Kraken.io",
     "email": "support@kraken.io"
@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "mime": "1.2.9",
-    "multiparter": "0.1.4",
     "request": "^2.67.0"
   }
 }
