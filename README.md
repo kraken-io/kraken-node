@@ -145,11 +145,11 @@ var opts = {
     wait: true
 };
 
-kraken.url(opts, function(data) {
-    if (data.success) {
-        console.log('Success. Optimized image URL: %s', data.kraked_url);
+kraken.url(opts, function(err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err);
     } else {
-        console.log('Failed. Error message: %s', data.message);
+        console.log('Success. Optimized image URL: %s', data.kraked_url);
     }
 });
 ````
@@ -196,11 +196,11 @@ var opts = {
     wait: true
 };
 
-kraken.upload(opts, function (data) {
-    if (data.success) {
-        console.log('Success. Optimized image URL: %s', data.kraked_url);
+kraken.upload(opts, function (err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err);
     } else {
-        console.log('Fail. Error message: %s', data.message);
+        console.log('Success. Optimized image URL: %s', data.kraked_url);
     }
 });
 ````
@@ -247,11 +247,11 @@ var opts = {
     }
 };
 
-kraken.upload(opts, function(data) {
-    if (data.success) {
-        console.log('Success. Optimized image URL: %s', data.kraked_url);
+kraken.upload(opts, function(err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err);
     } else {
-        console.log('Failed. Error message: %s', data.message);
+        console.log('Success. Optimized image URL: %s', data.kraked_url);
     }
 });
 ````
@@ -316,11 +316,11 @@ var opts = {
     }
 };
 
-kraken.upload(opts, function(data) {
-    if (data.success) {
-        console.log('Success. Optimized image URL: %s', data.kraked_url);
+kraken.upload(opts, function(err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err);
     } else {
-        console.log('Failed. Error message: %s', data.message);
+        console.log('Success. Optimized image URL: %s', data.kraked_url);
     }
 });
 ````
@@ -363,11 +363,11 @@ var opts = {
     }
 };
 
-kraken.upload(opts, function(data) {
-    if (data.success) {
-        console.log('Success. Optimized image URL: %s', data.kraked_url);
+kraken.upload(opts, function(err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err);
     } else {
-        console.log('Failed. Error message: %s', data.message);
+        console.log('Success. Optimized image URL: %s', data.kraked_url);
     }
 });
 ````
