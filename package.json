@@ -23,7 +23,6 @@
     "node": ">=0.8"
   },
   "dependencies": {
-    "mime": "1.2.9",
     "request": "^2.67.0"
   }
 }
