@@ -15,6 +15,7 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 * [Authentication](#authentication)
 * [Usage - Image URL](#usage---image-url)
 * [Usage - Image Upload](#usage---image-upload)
+* [Usage - User status](#usage---user-status)
 * [Lossy Optimization](#lossy-optimization)
 * [Image Resizing](#image-resizing)
 * [WebP Compression](#webp-compression)
@@ -204,6 +205,48 @@ kraken.upload(opts, function (err, data) {
     }
 });
 ````
+## Usage - User status
+
+If you want to check your quotas or your account status, you can use [userStatus](https://kraken.io/docs/user-status) which will return something like:
+```json
+{
+    "success": true,
+    "active": true,
+    "plan_name": "Enterprise",
+    "quota_total": 64424509440,  
+    "quota_used": 313271610,
+    "quota_remaining": 64111237830
+}
+```
+
+```javascript
+var Kraken = require('kraken');
+var kraken = new Kraken({
+    api_key: 'your-api-key',
+    api_secret: 'your-api-secret'
+});
+kraken.userStatus(function (err, data) {
+  if (err) {
+    console.log('Failed. Error message: %s', err);
+  } else {
+    console.log('Success', {
+      "success": data.success,
+      "active": data.active,
+      "quota_total": formatBytes(data.quota_total,2),  
+      "quota_used": formatBytes(data.quota_used,2),
+      "quota_remaining": formatBytes(data.quota_remaining,2)
+    });
+  }
+}); //formatBytes(data,2)
+
+// Optional function which will format the bytes value
+function formatBytes(value, decimal) {
+  if (0 == value) return "0 Bytes";
+  var c = 1024, d = decimal || 2, e = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
+    f = Math.floor(Math.log(value) / Math.log(c));
+  return parseFloat((value / Math.pow(c, f)).toFixed(d)) + " " + e[f]
+}
+```
 
 ## Lossy Optimization
 
