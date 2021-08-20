@@ -115,7 +115,7 @@ describe('Kraken.io API', () => {
         it('file<Object>: path and options', () => {
             const data = new DevData({
                 file: {
-                    value: 'test/support/images/image.gif',
+                    path: 'test/support/images/image.gif',
                     options: {}
                 }
             })

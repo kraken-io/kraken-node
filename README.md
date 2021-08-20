@@ -7,12 +7,15 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 - [Node.js module for Kraken.io API](#nodejs-module-for-krakenio-api)
   - [Installation](#installation)
   - [Requirements](#requirements)
+  - [Dependencies](#dependencies)
   - [Getting Started](#getting-started)
   - [Downloading Images](#downloading-images)
   - [How to use](#how-to-use)
   - [Wait and Callback URL](#wait-and-callback-url)
     - [Wait option](#wait-option)
     - [Callback URL](#callback-url)
+  - [Promises](#promises)
+  - [Async/Await](#asyncawait)
   - [Authentication](#authentication)
   - [Usage - Image URL](#usage---image-url)
   - [Usage - Image Upload](#usage---image-upload)
@@ -34,6 +37,11 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 ## Requirements
 
 -   Minimum NodeJS version: `12.20.0`
+
+## Dependencies
+
+-   [`form-data`](https://www.npmjs.com/package/form-data)
+-   [`axios`](https://www.npmjs.com/package/axios)
 
 ## Getting Started
 
@@ -59,7 +67,7 @@ With the `wait` option turned on for every request to the API, the connection wi
 
 **Request:**
 
-```js
+```javascript
 {
     "auth": {
         "api_key": "your-api-key",
@@ -72,7 +80,7 @@ With the `wait` option turned on for every request to the API, the connection wi
 
 **Response**
 
-```js
+```javascript
 {
     "success": true,
     "file_name": "header.jpg",
@@ -91,7 +99,7 @@ We recommend [RequestBin.com](http://requestbin.com) as an easy way to capture o
 
 **Request:**
 
-```js
+```javascript
 {
     "auth": {
         "api_key": "your-api-key",
@@ -104,7 +112,7 @@ We recommend [RequestBin.com](http://requestbin.com) as an easy way to capture o
 
 **Response:**
 
-```js
+```javascript
 {
     "id": "18fede37617a787649c3f60b9f1f280d"
 }
@@ -112,7 +120,7 @@ We recommend [RequestBin.com](http://requestbin.com) as an easy way to capture o
 
 **Results posted to the Callback URL:**
 
-```js
+```javascript
 {
     "id": "18fede37617a787649c3f60b9f1f280d"
     "success": true,
@@ -124,11 +132,51 @@ We recommend [RequestBin.com](http://requestbin.com) as an easy way to capture o
 }
 ```
 
+## Promises
+
+All Kraken.io API methods returns promises and `cb` argument is optional:
+
+```javascript
+var Kraken = require('kraken')
+
+var kraken = new Kraken({
+    api_key: 'your-api-key',
+    api_secret: 'your-api-secret'
+})
+
+kraken
+    .userStatus()
+    .then((status) => console.log('Kraken user status:', result))
+    .catch((error) =>
+        console.error('Error while requesting user status:', error)
+    )
+```
+
+## Async/Await
+
+All Kraken.io API methods support async/await syntax:
+
+```javascript
+var Kraken = require('kraken')
+
+var kraken = new Kraken({
+    api_key: 'your-api-key',
+    api_secret: 'your-api-secret'
+})
+
+async function exampleAsynFunction() {
+    let result = await kraken.userStatus()
+    console.log('Kraken user status:', result)
+}
+
+exampleAsynFunction()
+```
+
 ## Authentication
 
 The first step is to authenticate to Kraken API by providing your unique API Key and API Secret while creating a new Kraken instance:
 
-```js
+```javascript
 var Kraken = require('kraken')
 
 var kraken = new Kraken({
@@ -141,7 +189,7 @@ var kraken = new Kraken({
 
 To optimize an image by providing image URL use the `kraken.url()` method. You will need to provide two mandatory parameters - `url` to the image and `wait` or `callback_url`:
 
-```js
+```javascript
 var Kraken = require('kraken')
 
 var kraken = new Kraken({
@@ -165,7 +213,7 @@ kraken.url(opts, function (err, data) {
 
 Depending on a choosen response option (Wait or Callback URL) in the `data` object you will find either the optimization ID or optimization results containing a `success` property, file name, original file size, kraked file size, amount of savings and optimized image URL:
 
-```js
+```javascript
 {
     success: true,
     file_name: 'file.jpg',
@@ -178,7 +226,7 @@ Depending on a choosen response option (Wait or Callback URL) in the `data` obje
 
 If no saving were found, the API will return an object containing `"success":true` and will report saved_bytes of 0:
 
-```js
+```javascript
 {
     success: true,
     saved_bytes: 0,
@@ -187,11 +235,21 @@ If no saving were found, the API will return an object containing `"success":tru
 
 ## Usage - Image Upload
 
-If you want to upload your images directly to Kraken API use the `kraken.upload()` method. You will need to provide two mandatory parameters - `file` which is either a string containing a path to the file or a Stream Object and `wait` or `callback_url`.
+If you want to upload your images directly to Kraken API use the `kraken.upload()` method. You will need to provide two mandatory parameters - `file` and `wait` or `callback_url`.
+
+`file` parameter have next options:
+
+-   `String` - if file parameter is a string type, then it will be interpreted as a path to file and will be loaded using `fs.createReadStream()` function
+-   `Stream` | `Buffer` | `String` - file content, will be generated random filename
+-   `Object` with next properties:
+    -   _mandatory_ `path` or `value` - if `path` is present, `value` is ignored
+    -   `path` - path to file, will be loaded using `fs.createReadStream()` function
+    -   `value` - file content, supported types: `Stream` | `Buffer` | `String`
+    -   [`filename`] - new file name to be sended to server, this parameter allow to send different file name to server
 
 In the `data` object you will find the same optimization properties as with `url` option above.
 
-```js
+```javascript
 var Kraken = require('kraken'),
     fs = require('fs')
 
@@ -201,7 +259,81 @@ var kraken = new Kraken({
 })
 
 var opts = {
+    file: 'file.jpg',
+    wait: true
+}
+
+kraken.upload(opts, function (err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err)
+    } else {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    }
+})
+```
+
+Buffer as file, filename is ommited - it will be random:
+
+```javascript
+var opts = {
+    file: fs.readFileSync('file.jpg'),
+    wait: true
+}
+
+kraken.upload(opts, function (err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err)
+    } else {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    }
+})
+```
+
+Stream as file, filename is ommited - it will be random:
+
+```javascript
+var opts = {
     file: fs.createReadStream('file.jpg'),
+    wait: true
+}
+
+kraken.upload(opts, function (err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err)
+    } else {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    }
+})
+```
+
+Object as file options with path parameter:
+
+```javascript
+var opts = {
+    file: {
+        path: 'file.jpg',
+        fileName: 'example.jpg'
+    },
+    wait: true
+}
+
+kraken.upload(opts, function (err, data) {
+    if (err) {
+        console.log('Failed. Error message: %s', err)
+    } else {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    }
+})
+```
+
+Object as file options with buffer as value:
+
+```javascript
+var opts = {
+    file: {
+        value: fs.readFileSync('file.jpg'),
+        fileName: 'new_file_name.jpg'
+    }
     wait: true
 }
 
@@ -266,7 +398,7 @@ When you decide to sacrifice just a small amount of image quality (usually unnot
 
 To use lossy optimizations simply set `lossy: true` in your request:
 
-```js
+```javascript
 var opts = {
     file: '/path/to/image/file.jpg',
     lossy: true,
@@ -286,7 +418,7 @@ For lossy JPEG optimizations Kraken will generate multiple copies of a input ima
 
 Image resizing option is great for creating thumbnails or preview images in your applications. Kraken will first resize the given image and then optimize it with its vast array of optimization algorithms. The `resize` option needs a few parameters to be passed like desired `width` and/or `height` and a mandatory `strategy` property. For example:
 
-```js
+```javascript
 var Kraken = require('kraken')
 
 var kraken = new Kraken({
@@ -327,7 +459,7 @@ WebP is a new image format introduced by Google in 2010 which supports both loss
 
 To recompress your PNG or JPEG files into WebP format simply set `"webp": true` flag in your request JSON. You can also optionally set `"lossy": true` flag to leverage WebP's lossy compression:
 
-```js
+```javascript
 var opts = {
     file: '/path/to/image/file.jpg',
     wait: true,
@@ -356,7 +488,7 @@ Kraken API allows you to store optimized images directly in your S3 bucket or Cl
 
 The above parameters must be passed in a `s3_store` object:
 
-```js
+```javascript
 var Kraken = require('kraken')
 
 var kraken = new Kraken({
@@ -386,7 +518,7 @@ kraken.upload(opts, function (err, data) {
 
 The `data` object will contain `kraked_url` key pointing directly to the optimized file in your Amazon S3 account:
 
-```js
+```javascript
 {
     kraked_url: 'http://s3.amazonaws.com/YOUR_CONTAINER/path/to/file.jpg'
 }
@@ -406,7 +538,7 @@ The `data` object will contain `kraked_url` key pointing directly to the optimiz
 
 The above parameters must be passed in a `cf_store` object:
 
-```js
+```javascript
 var Kraken = require('kraken')
 
 var kraken = new Kraken({
@@ -435,13 +567,13 @@ kraken.upload(opts, function (err, data) {
 
 If your container is CDN-enabled, the optimization results will contain `kraked_url` which points directly to the optimized file location in your Cloud Files account, for example:
 
-```js
+```javascript
 kraked_url: 'http://e9ffc04970a269a54eeb-cc00fdd2d4f11dffd931005c9e8de53a.r2.cf1.rackcdn.com/path/to/file.jpg'
 ```
 
 If your container is not CDN-enabled `kraked_url` will point to the optimized image URL in the Kraken API:
 
-```js
+```javascript
 kraked_url: 'http://dl.kraken.io/ecdfa5c55d5668b1b5fe9e420554c4ee/file.jpg'
 ```
 

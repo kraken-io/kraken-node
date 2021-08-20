@@ -67,19 +67,23 @@ class KrakenUploadData extends FormData {
             fileData = fs.createReadStream(file, readOptions)
             opt.filename = path.basename(file) // Set the filename for form data
         } else if (file instanceof Object) {
-            // TODO: In case of breaking changes update
+            // TODO: In case of breaking changes - update
             // this block and method's options format to flat version
-            if (typeof file.value === 'string' || file instanceof String) {
-                fs.accessSync(file.value, fs.constants.R_OK)
-                fileData = fs.createReadStream(file.value, readOptions)
-            } else {
+            if (typeof file.path === 'string' || file instanceof String) {
+                fs.accessSync(file.path, fs.constants.R_OK)
+                fileData = fs.createReadStream(file.path, readOptions)
+            } else if (file.value) {
                 fileData = file.value
+            } else {
+                throw new Error(
+                    'Not found required option `file.path` or `file.value`'
+                )
             }
             opt = file.options || {}
         }
 
-        // Set length parameter for formData options for iterable
-        // formats or in case if length property is present
+        // Set length parameter for formData options
+        // in case if length property is present
         if (typeof file.length === 'number') {
             opt.knownLength = file.length
         }
