@@ -146,7 +146,7 @@ var kraken = new Kraken({
 
 kraken
     .userStatus()
-    .then((status) => console.log('Kraken user status:', result))
+    .then((status) => console.log('Kraken user status:', status))
     .catch((error) =>
         console.error('Error while requesting user status:', error)
     )
