@@ -33,7 +33,7 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 
 ## Requirements
 
-    NodeJS version: `12.20.0`
+-   Minimum NodeJS version: `12.20.0`
 
 ## Getting Started
 
