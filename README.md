@@ -32,9 +32,7 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
 
 ## Installation
 
-    npm install kraken --save --production
-
-`--production` flag used to save install time and space by not installing devDependencies
+    npm install kraken --save
 
 ## Requirements
 
