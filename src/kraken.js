@@ -19,13 +19,14 @@ const KrakenUploadData = require('./lib/KrakenUploadData')
 const packageInfo = require('../package.json') // Load package info
 const userAgent = `kraken-node/${packageInfo.version}` // Set default user agent
 
-// Convert axios reponse to kraken response
+// Convert axios response to kraken response
 function convertResposne(res) {
     return new KrakenResponse(res.data)
 }
 
 // Convert axios or standard error to kraken response
 function convertError(err) {
+    // In some cases err.response can be empty (network errors and etc.)
     if (err.response) {
         const res = err.response
         if (res.data) {
