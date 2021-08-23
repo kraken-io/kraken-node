@@ -1,3 +1,8 @@
+/**
+ * Provides Kraken.io credentials for API
+ *
+ * @class KrakenAuth
+ */
 class KrakenAuth {
     /**
      * Constructs a new KrakenAuth instance

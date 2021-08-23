@@ -14,7 +14,7 @@ class KrakenApiData {
     }
 
     /**
-     * Convert this object to JSON string
+     * Convert API Data to JSON string
      * @returns {string}
      */
     toJson() {

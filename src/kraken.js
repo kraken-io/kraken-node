@@ -88,13 +88,17 @@ class Kraken {
      * @param {object} auth Kraken API key and secret
      */
     constructor(auth) {
-        this.auth = new KrakenAuth(auth.api_key, auth.api_secret)
+        if (auth instanceof KrakenAuth) {
+            this.auth = auth
+        } else {
+            this.auth = new KrakenAuth(auth.api_key, auth.api_secret)
+        }
         this.api = new KrakenApiList()
     }
 
     /**
      * Upload file to Kraken.io API
-     * @param {object} options
+     * @param {object} options Kraken options for uploaded image
      * @param {Function} cb=null
      * @returns {Promise<KrakenResponse>}
      */
@@ -120,9 +124,9 @@ class Kraken {
 
     /**
      * Krak image via URL
-     * @param {any} options
-     * @param {any} cb=null
-     * @returns {any}
+     * @param {object} options Kraken options for url
+     * @param {Function} cb=null Callback
+     * @returns {Promise}
      */
     url(options, cb = null) {
         const data = new KrakenApiData(this, options) // Processing options
@@ -130,6 +134,12 @@ class Kraken {
         return axiosPost(this.api.url, data, axiosOpts, cb) // Sending request
     }
 
+    /**
+     * Get user status
+     * @param {Function} [cb=null] Callback
+     * @return {Promise}
+     * @memberof Kraken
+     */
     userStatus(cb = null) {
         const data = new KrakenApiData(this) // Processing options
         const axiosOpts = new AxiosOptions(Kraken.default.axios) // Processing axios options
@@ -138,6 +148,7 @@ class Kraken {
 }
 
 Kraken.KrakenApiList = KrakenApiList
+Kraken.KrakenAuth = KrakenAuth
 Kraken.default = {
     auth: new KrakenAuth('', ''),
     axios: new AxiosOptions({

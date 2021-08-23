@@ -29,12 +29,11 @@
     "devDependencies": {
         "eslint": "^7.32.0",
         "jest": "^27.0.6",
-        "jsdoc-to-markdown": "^7.0.1",
         "prettier": "^2.3.2"
     },
     "scripts": {
         "test": "node --trace-warnings node_modules/.bin/jest --no-cache",
-        "buildDocs": "npx jsdoc2md src/**/*.js > docs/code/README.md"
+        "buildDocs": "documentation build src/** -f md --github > docs/code/README.md"
     },
     "jest": {
         "collectCoverage": true,
