@@ -31,7 +31,7 @@ class KrakenUploadData extends FormData {
 
     /**
      * @typedef {Object} FileDetails
-     * @property {String|Stream|Buffer} value Path to file or fiel data
+     * @property {String|Stream|Buffer} value Path to file or file data
      * @property {FileOptions} options File options {@link FileOptions}
      */
 
@@ -44,7 +44,7 @@ class KrakenUploadData extends FormData {
      *
      * Constructs a new instance of KrakenUploadData and process options for uploading.
      *
-     * @param {Kraken} kraken The kraken object isntance
+     * @param {Kraken} kraken The kraken object instance
      * @param {UploadOptions} options The upload options {@link UploadOptions}     *
      */
     constructor(kraken, options) {

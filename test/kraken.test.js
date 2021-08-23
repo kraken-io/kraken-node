@@ -81,7 +81,10 @@ describe('Kraken.io API', () => {
                 dev: true
             })
 
-            return expect(kraken.upload(data)).rejects.toThrow('ENOENT')
+            return expect(kraken.upload(data)).rejects.toHaveProperty(
+                'originalError.code',
+                'ENOENT'
+            )
         })
 
         it('file<String> -> path', () => {

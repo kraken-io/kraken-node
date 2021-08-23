@@ -34,7 +34,7 @@
     },
     "scripts": {
         "test": "node --trace-warnings node_modules/.bin/jest --no-cache",
-        "buildDocs": ""
+        "buildDocs": "npx jsdoc2md src/**/*.js > docs/code/README.md"
     },
     "jest": {
         "collectCoverage": true,

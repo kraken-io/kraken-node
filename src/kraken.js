@@ -19,6 +19,7 @@ const KrakenUploadData = require('./lib/KrakenUploadData')
 const packageInfo = require('../package.json') // Load package info
 const userAgent = `kraken-node/${packageInfo.version}` // Set default user agent
 
+// Internal static methods - private static methods doesn't well supported in node yet.
 // Convert axios response to kraken response
 function convertResposne(res) {
     return new KrakenResponse(res.data)
@@ -26,30 +27,34 @@ function convertResposne(res) {
 
 // Convert axios or standard error to kraken response
 function convertError(err) {
+    const res = err.response
+
     // In some cases err.response can be empty (network errors and etc.)
-    if (err.response) {
-        const res = err.response
+    if (res) {
+        // Got data from server response
         if (res.data) {
             return new KrakenResponse(res.data) // Standard Kraken error
-        } else {
-            return new KrakenResponse({
-                // Processing all other errors kinds
-                success: false,
-                error: err.toString(),
-                status: {
-                    // Extended error info
-                    code: res.status,
-                    text: res.statusText
-                }
-            })
         }
-    } else {
-        // Response is empty - processing all other errors kinds
+
+        // Server response without data or it can't be processed by axios
         return new KrakenResponse({
             success: false,
-            error: err.toString()
+            error: err.toString(),
+            status: {
+                // Extended error info
+                code: res.status,
+                text: res.statusText
+            },
+            originalError: err
         })
     }
+
+    // Response is empty - processing all other errors kinds
+    return new KrakenResponse({
+        success: false,
+        error: err.toString(),
+        originalError: err
+    })
 }
 
 // Send POST request using axios
@@ -97,13 +102,15 @@ class Kraken {
         // FS operations - need to catch them too and return as rejected promise
         try {
             var data = new KrakenUploadData(this, options) // Processing options
-        } catch (error) {
-            // console.log('====== upload error ======', error)
-            error.success = false
-            error.error = error.toString()
-            return Promise.reject(error)
+        } catch (err) {
+            return Promise.reject(
+                new KrakenResponse({
+                    success: false,
+                    error: err.toString(),
+                    originalError: err
+                })
+            )
         }
-        // console.log('====== upload ======', data)
         const axiosOpts = new AxiosOptions(Kraken.default.axios, {
             // Processing axios options
             headers: data.getHeaders()

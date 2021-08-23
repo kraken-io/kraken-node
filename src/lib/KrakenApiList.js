@@ -17,7 +17,7 @@ class KrakenApiList {
         url = KrakenApiList.default.url,
         methods = KrakenApiList.default.methods
     ) {
-        // Convert object with
+        // Convert object with methods/urls to api list
         for (let method of Object.keys(methods)) {
             this[method] = `${url}/${methods[method]}`
         }
