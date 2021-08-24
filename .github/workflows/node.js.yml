@@ -23,6 +23,10 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    env:
+      KRAKEN_API_KEY: ${{ secrets.KRAKEN_API_KEY }}
+      KRAKEN_API_SECRET: ${{ secrets.KRAKEN_API_SECRET }}
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -32,7 +36,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-      env:
-        KRAKEN_API_KEY: ${{ secrets.KRAKEN_API_KEY }}
-        KRAKEN_API_SECRET: ${{ secrets.KRAKEN_API_SECRET }}
     - run: npm test
