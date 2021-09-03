@@ -85,13 +85,21 @@ function axiosPost(url, data, axiosOpts, cb) {
 class Kraken {
     /**
      * Constructs a new Kraken instance
-     * @param {object} auth Kraken API key and secret
+     * @param {object} keyOrAuth Kraken API key and secret
+     * @param {string} keyOrAuth Kraken API key
+     * @param {string} [secret=null] Kraken API secret
+     * @memberof Kraken
      */
-    constructor(auth) {
-        if (auth instanceof KrakenAuth) {
-            this.auth = auth
-        } else {
-            this.auth = new KrakenAuth(auth.api_key, auth.api_secret)
+    constructor(keyOrAuth, secret = null) {
+        if (keyOrAuth instanceof KrakenAuth) {
+            this.auth = keyOrAuth
+        } else if (keyOrAuth instanceof Object) {
+            this.auth = new KrakenAuth(keyOrAuth.api_key, keyOrAuth.api_secret)
+        } else if (
+            typeof keyOrAuth === 'string' &&
+            typeof secret === 'string'
+        ) {
+            this.auth = new KrakenAuth(keyOrAuth, secret)
         }
         this.api = new KrakenApiList()
     }

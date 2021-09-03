@@ -20,71 +20,72 @@
 
 ## Kraken
 
-[src/kraken.js:85-148][16]
+[src/kraken.js:85-156][16]
 
 This class describes a Kraken-io API
 
 ### Parameters
 
-*   `auth` **[object][17]** Kraken API key and secret
+*   `keyOrAuth` **[string][17]** Kraken API key
+*   `secret` **[string][17]** Kraken API secret (optional, default `null`)
 
 ### upload
 
-[src/kraken.js:105-123][18]
+[src/kraken.js:113-131][18]
 
 Upload file to Kraken.io API
 
 #### Parameters
 
-*   `options` **[object][17]** Kraken options for uploaded image
-*   `cb` **[Function][19]** \=null (optional, default `null`)
+*   `options` **[object][19]** Kraken options for uploaded image
+*   `cb` **[Function][20]** \=null (optional, default `null`)
 
-Returns **[Promise][20]<[KrakenResponse][21]>** 
+Returns **[Promise][21]<[KrakenResponse][22]>** 
 
 ### url
 
-[src/kraken.js:131-135][22]
+[src/kraken.js:139-143][23]
 
 Krak image via URL
 
 #### Parameters
 
-*   `options` **[object][17]** Kraken options for url
-*   `cb` **[Function][19]** \=null Callback (optional, default `null`)
+*   `options` **[object][19]** Kraken options for url
+*   `cb` **[Function][20]** \=null Callback (optional, default `null`)
 
-Returns **[Promise][20]** 
+Returns **[Promise][21]** 
 
 ### userStatus
 
-[src/kraken.js:143-147][23]
+[src/kraken.js:151-155][24]
 
 Get user status
 
 #### Parameters
 
-*   `cb` **[Function][19]** Callback (optional, default `null`)
+*   `cb` **[Function][20]** Callback (optional, default `null`)
 
-Returns **[Promise][20]** 
+Returns **[Promise][21]** 
 
 ## AxiosOptions
 
-[src/lib/AxiosOptions.js:6-22][24]
+[src/lib/AxiosOptions.js:6-22][25]
 
 Provides options processing for axios
 
 ## KrakenApiData
 
-[src/lib/KrakenApiData.js:6-23][25]
+[src/lib/KrakenApiData.js:6-23][26]
 
 Provides kraken API data processing
 
 ### toJson
 
-[src/lib/KrakenApiData.js:20-22][26]
+[src/lib/KrakenApiData.js:20-22][27]
 
 Convert API Data to JSON string
 
-Returns **[string][27]** 
+Returns **[string][17]** 
 
 ## KrakenApiList
 
@@ -142,34 +143,34 @@ KrakenUploadData processing a data for uploading.
 
 [15]: #krakenuploaddata
 
-[16]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/kraken.js#L85-L148 "Source code on GitHub"
+[16]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L85-L156 "Source code on GitHub"
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[18]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/kraken.js#L105-L123 "Source code on GitHub"
+[18]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L113-L131 "Source code on GitHub"
 
-[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[21]: #krakenresponse
+[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[22]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/kraken.js#L131-L135 "Source code on GitHub"
+[22]: #krakenresponse
 
-[23]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/kraken.js#L143-L147 "Source code on GitHub"
+[23]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L139-L143 "Source code on GitHub"
 
-[24]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/AxiosOptions.js#L6-L22 "Source code on GitHub"
+[24]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L151-L155 "Source code on GitHub"
 
-[25]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/KrakenApiData.js#L6-L23 "Source code on GitHub"
+[25]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/AxiosOptions.js#L6-L22 "Source code on GitHub"
 
-[26]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/KrakenApiData.js#L20-L22 "Source code on GitHub"
+[26]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenApiData.js#L6-L23 "Source code on GitHub"
 
-[27]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[27]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenApiData.js#L20-L22 "Source code on GitHub"
 
-[28]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/KrakenApiList.js#L9-L25 "Source code on GitHub"
+[28]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenApiList.js#L9-L25 "Source code on GitHub"
 
-[29]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/KrakenAuth.js#L6-L16 "Source code on GitHub"
+[29]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenAuth.js#L6-L16 "Source code on GitHub"
 
-[30]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/KrakenResponse.js#L6-L14 "Source code on GitHub"
+[30]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenResponse.js#L6-L14 "Source code on GitHub"
 
-[31]: https://github.com/kraken-io/kraken-node/blob/a5140650153cbd3fbb4b6481b62edf42c8fb3f1b/src/lib/KrakenUploadData.js#L22-L98 "Source code on GitHub"
+[31]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenUploadData.js#L22-L98 "Source code on GitHub"

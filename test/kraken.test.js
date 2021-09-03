@@ -50,9 +50,15 @@ describe('Kraken.io API', () => {
         kraken = new Kraken(krakenAuth)
     })
 
-    // auth
-    it('new Kraken({...})', () => {
+    // auth 1
+    it('new Kraken({api_key, api_secret})', () => {
         const kraken = new Kraken(krakenAuth)
+        expect(kraken.auth).toEqual(krakenAuth)
+    })
+
+    // auth 2
+    it('new Kraken(api_key, api_secret)', () => {
+        const kraken = new Kraken(krakenAuth.api_key, krakenAuth.api_secret)
         expect(kraken.auth).toEqual(krakenAuth)
     })
 
