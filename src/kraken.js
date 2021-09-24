@@ -105,7 +105,7 @@ class Kraken {
     }
 
     /**
-     * Upload file to Kraken.io API
+     * Upload image to Kraken.io and optimize it
      * @param {object} options Kraken options for uploaded image
      * @param {Function} cb=null
      * @returns {Promise<KrakenResponse>}
@@ -131,7 +131,7 @@ class Kraken {
     }
 
     /**
-     * Krak image via URL
+     * Optimize image from URL
      * @param {object} options Kraken options for url
      * @param {Function} cb=null Callback
      * @returns {Promise}
@@ -158,7 +158,6 @@ class Kraken {
 Kraken.KrakenApiList = KrakenApiList
 Kraken.KrakenAuth = KrakenAuth
 Kraken.default = {
-    auth: new KrakenAuth('', ''),
     axios: new AxiosOptions({
         responseType: 'json',
         headers: { 'User-Agent': userAgent }

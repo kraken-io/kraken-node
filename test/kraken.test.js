@@ -82,9 +82,7 @@ describe('Kraken.io API', () => {
     describe('kraken.upload({ file })', () => {
         it('file<String> -> catch wrong file path', () => {
             const data = new DevData({
-                file: 'test/support/images/wrong-file-path.gif',
-                wait: true,
-                dev: true
+                file: 'test/support/images/wrong-file-path.gif'
             })
 
             return expect(kraken.upload(data)).rejects.toHaveProperty(

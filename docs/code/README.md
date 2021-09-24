@@ -33,7 +33,7 @@ This class describes a Kraken-io API
 
 [src/kraken.js:113-131][18]
 
-Upload file to Kraken.io API
+Upload image to Kraken.io and optimize it
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Returns **[Promise][21]<[KrakenResponse][22]>**
 
 [src/kraken.js:139-143][23]
 
-Krak image via URL
+Optimize image from URL
 
 #### Parameters
 
@@ -143,11 +143,11 @@ KrakenUploadData processing a data for uploading.
 
 [15]: #krakenuploaddata
 
-[16]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L85-L156 "Source code on GitHub"
+[16]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/kraken.js#L85-L156 "Source code on GitHub"
 
 [17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[18]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L113-L131 "Source code on GitHub"
+[18]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/kraken.js#L113-L131 "Source code on GitHub"
 
 [19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
@@ -157,20 +157,20 @@ KrakenUploadData processing a data for uploading.
 
 [22]: #krakenresponse
 
-[23]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L139-L143 "Source code on GitHub"
+[23]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/kraken.js#L139-L143 "Source code on GitHub"
 
-[24]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/kraken.js#L151-L155 "Source code on GitHub"
+[24]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/kraken.js#L151-L155 "Source code on GitHub"
 
-[25]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/AxiosOptions.js#L6-L22 "Source code on GitHub"
+[25]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/AxiosOptions.js#L6-L22 "Source code on GitHub"
 
-[26]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenApiData.js#L6-L23 "Source code on GitHub"
+[26]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/KrakenApiData.js#L6-L23 "Source code on GitHub"
 
-[27]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenApiData.js#L20-L22 "Source code on GitHub"
+[27]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/KrakenApiData.js#L20-L22 "Source code on GitHub"
 
-[28]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenApiList.js#L9-L25 "Source code on GitHub"
+[28]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/KrakenApiList.js#L9-L25 "Source code on GitHub"
 
-[29]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenAuth.js#L6-L16 "Source code on GitHub"
+[29]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/KrakenAuth.js#L6-L16 "Source code on GitHub"
 
-[30]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenResponse.js#L6-L14 "Source code on GitHub"
+[30]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/KrakenResponse.js#L6-L14 "Source code on GitHub"
 
-[31]: https://github.com/kraken-io/kraken-node/blob/c8da5ef930242a7d015cd71346ddafbcc7ad1c1c/src/lib/KrakenUploadData.js#L22-L98 "Source code on GitHub"
+[31]: https://github.com/kraken-io/kraken-node/blob/0b4bbcefcd070e8431660f20a2b6a95db38caa13/src/lib/KrakenUploadData.js#L22-L98 "Source code on GitHub"
