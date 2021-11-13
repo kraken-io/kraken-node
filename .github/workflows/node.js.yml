@@ -7,8 +7,7 @@ on:
   push:
     branches:
       - master
-    tags:
-      - v*
+      - develop
   pull_request:
     branches:
       - '*'
