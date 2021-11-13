@@ -61,6 +61,14 @@
         "trailingComma": "none",
         "bracketSpacing": true,
         "semi": false,
-        "useTabs": false
+        "useTabs": false,
+        "overrides": [
+            {
+                "files": "*.yml",
+                "options": {
+                    "tabWidth": 2
+                }
+            }
+        ]
     }
 }
