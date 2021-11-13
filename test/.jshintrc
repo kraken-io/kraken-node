@@ -15,7 +15,13 @@
     "strict": false, // true: Requires all functions run in ES5 Strict Mode
     "devel": false, // Development/debugging (alert, confirm, etc)
     "node": true, // Node.js
-    "globals": {}, // additional predefined global variables
+    "globals": {
+        // additional predefined global variables
+        "describe": true,
+        "test": true,
+        "it": true,
+        "expect": true
+    },
     "esversion": 10,
     "asi": true // Missing semicolon warning off
 }

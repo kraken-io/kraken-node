@@ -6,11 +6,12 @@ lib-cov
 *.out
 *.pid
 *.gz
-*.DS_Store
+.idea
+node_modules
 
 pids
 logs
 results
 
-node_modules
 npm-debug.log
+coverage
