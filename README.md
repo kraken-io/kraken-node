@@ -202,6 +202,7 @@ var opts = {
     wait: true
 }
 
+// with callbacks
 kraken.url(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -209,6 +210,15 @@ kraken.url(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promises
+kraken.url(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 Depending on a choosen response option (Wait or Callback URL) in the `data` object you will find either the optimization ID or optimization results containing a `success` property, file name, original file size, kraked file size, amount of savings and optimized image URL:
@@ -263,6 +273,7 @@ var opts = {
     wait: true
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -270,6 +281,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 Buffer as file, filename is ommited - it will be random:
@@ -280,6 +300,7 @@ var opts = {
     wait: true
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -287,6 +308,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 Stream as file, filename is ommited - it will be random:
@@ -297,6 +327,7 @@ var opts = {
     wait: true
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -304,6 +335,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 Object as file options with path parameter:
@@ -317,6 +357,7 @@ var opts = {
     wait: true
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -324,6 +365,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 Object as file options with buffer as value:
@@ -337,6 +387,7 @@ var opts = {
     wait: true
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -344,6 +395,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 ## Usage - User status
@@ -367,6 +427,8 @@ var kraken = new Kraken({
     api_key: 'your-api-key',
     api_secret: 'your-api-secret'
 })
+
+// with callback
 kraken.userStatus(function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -380,6 +442,21 @@ kraken.userStatus(function (err, data) {
         })
     }
 }) //formatBytes(data,2)
+
+// with promise
+kraken.userStatus()
+    .then(data => {
+        console.log('Success', {
+            success: data.success,
+            active: data.active,
+            quota_total: formatBytes(data.quota_total, 2),
+            quota_used: formatBytes(data.quota_used, 2),
+            quota_remaining: formatBytes(data.quota_remaining, 2)
+        })
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })//formatBytes(data,2)
 
 // Optional function which will format the bytes value
 function formatBytes(value, decimal) {
@@ -436,6 +513,7 @@ var opts = {
     }
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -443,6 +521,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 The `strategy` property can have one of the following values:
@@ -507,6 +594,7 @@ var opts = {
     }
 }
 
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -514,6 +602,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 The `data` object will contain `kraked_url` key pointing directly to the optimized file in your Amazon S3 account:
@@ -556,6 +653,8 @@ var opts = {
     }
 }
 
+
+// with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
         console.log('Failed. Error message: %s', err)
@@ -563,6 +662,15 @@ kraken.upload(opts, function (err, data) {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     }
 })
+
+// with promise
+kraken.upload(opts)
+    .then(data => {
+        console.log('Success. Optimized image URL: %s', data.kraked_url)
+    })
+    .catch(err => {
+        console.log('Failed. Error message: %s', err)
+    })
 ```
 
 If your container is CDN-enabled, the optimization results will contain `kraked_url` which points directly to the optimized file location in your Cloud Files account, for example:
