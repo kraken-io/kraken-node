@@ -91,6 +91,8 @@ class Kraken {
      * @memberof Kraken
      */
     constructor(keyOrAuth, secret = null) {
+        if(!keyOrAuth) throw new Error('Please provide an API key');
+
         if (keyOrAuth instanceof KrakenAuth) {
             this.auth = keyOrAuth
         } else if (keyOrAuth instanceof Object) {
@@ -100,6 +102,9 @@ class Kraken {
             typeof secret === 'string'
         ) {
             this.auth = new KrakenAuth(keyOrAuth, secret)
+        }
+        else {
+            throw new Error('Please provide an API key and secret');
         }
         this.api = new KrakenApiList()
     }

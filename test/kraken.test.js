@@ -1,5 +1,6 @@
 const Kraken = require('../')
 const fs = require('fs')
+require('dotenv').config();
 
 // Environment variables names with API key and secret
 const envKey = 'KRAKEN_API_KEY'
@@ -167,7 +168,7 @@ describe('Kraken.io API', () => {
 // Check if environment variable is defined
 function CheckEnvVars(names) {
     for (let name of names) {
-        if (process.env[name].length === 0) {
+        if (!process.env[name]) {
             throw new Error(`Not found environment variable: ${name}`)
         }
     }
