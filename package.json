@@ -1,28 +1,75 @@
 {
-  "name": "kraken",
-  "version": "0.4.0",
-  "author": {
-    "name": "Kraken.io",
-    "email": "support@kraken.io"
-  },
-  "description": "Plug into the power and speed of Kraken.io Image Optimizer",
-  "homepage": "https://github.com/kraken-io/kraken-node",
-  "main": "./lib/kraken",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kraken-io/kraken-node.git"
-  },
-  "keywords": [
-    "kraken",
-    "kraken.io",
-    "image optimizer",
-    "image optimiser"
-  ],
-  "license": "MIT",
-  "engine": {
-    "node": ">=0.8"
-  },
-  "dependencies": {
-    "request": "^2.67.0"
-  }
+    "name": "kraken",
+    "version": "0.5.0",
+    "author": {
+        "name": "Kraken.io",
+        "email": "support@kraken.io"
+    },
+    "description": "Plug into the power and speed of Kraken.io Image Optimizer",
+    "homepage": "https://github.com/kraken-io/kraken-node",
+    "main": "./src/kraken",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kraken-io/kraken-node.git"
+    },
+    "keywords": [
+        "kraken",
+        "kraken.io",
+        "image optimizer",
+        "image optimiser"
+    ],
+    "license": "MIT",
+    "engine": {
+        "node": ">=12.20.0"
+    },
+    "dependencies": {
+        "axios": "^0.24.0",
+        "form-data": "^4.0.0"
+    },
+    "devDependencies": {
+        "dotenv": "^16.3.1",
+        "eslint": "^8.2.0",
+        "jest": "^28.1.3",
+        "prettier": "^2.4.1"
+    },
+    "scripts": {
+        "test": "node --trace-warnings node_modules/.bin/jest --no-cache",
+        "buildDocs": "documentation build src/** -f md --github > docs/code/README.md"
+    },
+    "jest": {
+        "collectCoverage": true,
+        "coverageDirectory": "coverage",
+        "coverageProvider": "v8",
+        "coverageReporters": [
+            "json",
+            "text",
+            "lcov",
+            "clover"
+        ]
+    },
+    "eslintConfig": {
+        "parserOptions": {
+            "ecmaVersion": 2017
+        },
+        "env": {
+            "es6": true
+        }
+    },
+    "prettier": {
+        "printWidth": 80,
+        "tabWidth": 4,
+        "singleQuote": true,
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "semi": false,
+        "useTabs": false,
+        "overrides": [
+            {
+                "files": "*.yml",
+                "options": {
+                    "tabWidth": 2
+                }
+            }
+        ]
+    }
 }
