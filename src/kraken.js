@@ -115,7 +115,7 @@ class Kraken {
      * @param {Function} cb=null
      * @returns {Promise<KrakenResponse>}
      */
-    upload(options, cb = null) {
+    async upload(options, cb = null) {
         // FS operations - need to catch them too and return as rejected promise
         try {
             var data = new KrakenUploadData(this, options) // Processing options
@@ -141,7 +141,7 @@ class Kraken {
      * @param {Function} cb=null Callback
      * @returns {Promise}
      */
-    url(options, cb = null) {
+    async url(options, cb = null) {
         const data = new KrakenApiData(this, options) // Processing options
         const axiosOpts = new AxiosOptions(Kraken.default.axios) // Processing axios options
         return axiosPost(this.api.url, data, axiosOpts, cb) // Sending request
@@ -153,7 +153,7 @@ class Kraken {
      * @return {Promise}
      * @memberof Kraken
      */
-    userStatus(cb = null) {
+    async userStatus(cb = null) {
         const data = new KrakenApiData(this) // Processing options
         const axiosOpts = new AxiosOptions(Kraken.default.axios) // Processing axios options
         return axiosPost(this.api.userStatus, data, axiosOpts, cb) // Sending request
