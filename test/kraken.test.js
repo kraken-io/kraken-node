@@ -9,6 +9,8 @@ const envSecret = 'KRAKEN_API_SECRET'
 const krakenKey = process.env[envKey]
 const krakenSecret = process.env[envSecret]
 
+const MAX_TIMEOUT = 20000;
+
 // Check key and secret variables
 CheckEnvVars([envKey, envSecret])
 
@@ -83,7 +85,7 @@ describe('Kraken.io API', () => {
         }
 
         return expect(kraken.url(data)).resolves.toBeKrakenSuccess()
-    })
+    },MAX_TIMEOUT)
 
     // url various formats
     describe('kraken.upload({ file })', () => {
