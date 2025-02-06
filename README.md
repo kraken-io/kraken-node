@@ -25,9 +25,11 @@ With this Node module you can plug into the power and speed of [Kraken.io](http:
     - [JPEG Images](#jpeg-images)
   - [Image Resizing](#image-resizing)
   - [WebP Compression](#webp-compression)
-  - [Amazon S3 and Rackspace Cloud Files](#amazon-s3-and-rackspace-cloud-files)
+  - [PDF Compression](#pdf-compression)
+  - [Amazon S3, Rackspace Cloud Files, and Google Cloud Storage](#amazon-s3-rackspace-cloud-files-and-google-cloud-storage)
     - [Amazon S3](#amazon-s3)
     - [Rackspace Cloud Files](#rackspace-cloud-files)
+    - [Google Cloud Storage](#google-cloud-storage)
 - [LICENSE - MIT](#license---mit)
 
 ## Installation
@@ -544,20 +546,69 @@ The `strategy` property can have one of the following values:
 
 WebP is a new image format introduced by Google in 2010 which supports both lossy and lossless compression. According to [Google](https://developers.google.com/speed/webp/), WebP lossless images are **26% smaller** in size compared to PNGs and WebP lossy images are **25-34% smaller** in size compared to JPEG images.
 
-To recompress your PNG or JPEG files into WebP format simply set `"webp": true` flag in your request JSON. You can also optionally set `"lossy": true` flag to leverage WebP's lossy compression:
+WebP's lossy compression:WebP compression no longer requires setting `"webp": true` . Instead, you should make a standard optimization request, and Kraken.io will handle WebP conversion based on your configured settings.
+
+### Convert to WebP format
 
 ```javascript
 var opts = {
     file: '/path/to/image/file.jpg',
     wait: true,
-    webp: true,
+    lossy: true,
+    convert: {
+        format: 'webp'
+    }
+}
+```
+
+### Optimize WebP Image
+
+```javascript
+var opts = {
+    file: '/path/to/image/file.webp',
+    wait: true,
     lossy: true
 }
 ```
 
-## Amazon S3 and Rackspace Cloud Files
+## PDF Compression
 
-Kraken API allows you to store optimized images directly in your S3 bucket or Cloud Files container. With just a few additional parameters your optimized images will be pushed to your external storage in no time.
+Kraken.io now supports PDF compression, allowing you to optimize PDF files with minimal loss of quality.
+
+Kraken API automatically determines the optimal compression settings based on the content type of the PDF (e.g., image-heavy, text-heavy, or mixed content). Additionally, users can optionally provide custom parameters to further control the compression process.
+
+
+```javascript
+var opts = {
+    file: '/path/to/image/document.pdf',
+    wait: true
+}
+```
+
+**Optional Parameters:**
+
+[API Docs for PDF Compression](https://kraken.io/docs/pdf-compression)
+
+-   `level` - Optimization level for the PDF. Available options are `screen`, `ebook`, `printer` and `prepress`. **Overrides DPI values**.
+-   `quality` - JPEG quality for embedded images. Acceptable values: **1-100**. Higher values preserve more detail but increase file size. Default is **65**.
+-   `dpi` - Resolution for images within the PDF. Default value is calculated based on the PDF type. Adjust this value based on your desired output quality.
+-   `downsampleType` - Method used to downsample images. Available options are `bicubic`, `average` and `subsample`
+
+
+```javascript
+var opts = {
+    file: '/path/to/image/file.webp',
+    wait: true,
+    level: 'ebook',
+    quality: 60,
+    dpi: 150,
+    downsampleType: 'bicubic'
+}
+```
+
+## Amazon S3, Rackspace Cloud Files and Google Cloud Storage
+
+Kraken API allows you to store optimized images directly in your S3 bucket, Google Cloud Storage or Cloud Files container. With just a few additional parameters your optimized images will be pushed to your external storage in no time.
 
 ### Amazon S3
 
@@ -683,6 +734,90 @@ If your container is not CDN-enabled `kraked_url` will point to the optimized im
 
 ```javascript
 kraked_url: 'http://dl.kraken.io/ecdfa5c55d5668b1b5fe9e420554c4ee/file.jpg'
+```
+
+### Google Cloud Storage
+
+Kraken.io API allows you to store optimized images directly in your Google Cloud Storage (GCS) bucket. Follow the steps below to configure your GCS integration and securely store your optimized images.
+
+#### Prerequisites:
+
+Ensure you have access to Google Cloud Platform (GCP) and an active project where you will store your images.
+
+#### Mandatory Parameters:
+
+- `gcs_store.bucket` - Name of the destination bucket on your Google Cloud Storage account.
+- `gcs_store.credentials` - Your service account credentials (JSON format) to authenticate with GCS.
+
+#### Optional Parameters:
+
+- `gcs_store.path` - Destination path in your GCS bucket (e.g., "images/layout/header.jpg"). Defaults to root `/`.
+- `gcs_store.acl` - Permissions of the destination object. This can be "publicRead" or "private". Defaults to "private".
+- `gcs_store.metadata` - Metadata you would like to assign to your GCS object (optimized image).
+
+#### Important:
+
+Make sure your Google Cloud Storage bucket has the appropriate permissions set to allow Kraken.io API to store images.
+
+#### Step 1: Creating a Google Cloud Storage Bucket
+
+1. Log in to your Google Cloud Console.
+2. Navigate to the "Storage" section and select "Browser."
+3. Click "Create bucket" and follow the prompts.
+4. Note the bucket name for later use.
+
+#### Step 2: Obtaining GCS Credentials
+
+To interact with GCS through the API, you need appropriate credentials as a service account key:
+
+1. Go to "IAM & Admin" in Google Cloud Console.
+2. Select "Service Accounts" and click "Create Service Account."
+3. Enter a name and description for the service account.
+4. Assign necessary roles like "Storage Object Admin" or "Storage Object Creator."
+5. Click "Create Key" and choose JSON type. This will download a JSON file with your credentials.
+6. Securely store this JSON file. It contains sensitive information that allows access to your GCS resources.
+
+#### Step 3: Configuring Your Kraken.io API Request
+
+Include the necessary details in your Kraken.io API request to store the optimized image directly in your GCS bucket. Insert the JSON file's contents into the `credentials` property inside `gcs_store`.
+
+```javascript
+const fs = require('fs').promises;
+const Kraken = require("kraken");
+
+(async () => {
+  try {
+    const kraken = new Kraken({
+      api_key: "your_api_key",
+      api_secret: "your_api_secret"
+    });
+
+    const credentials = JSON.parse(await fs.readFile('path/to/your/credentials.json', 'utf8'));
+
+    const params = {
+      url: "https://example.com/image.png",
+      wait: true,
+      lossy: true,
+      gcs_store: {
+        acl: "private",
+        bucket: "your-bucket-name",
+        path: "path/to/your/image.png",
+        credentials
+      }
+    };
+
+    kraken.url(params, function (status) {
+      if (status.success) {
+        console.log("Success. Optimized image URL: %s", status.kraked_url);
+      } else {
+        console.log("Fail. Error message: %s", status.message);
+      }
+    });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+})();
+}
 ```
 
 # LICENSE - MIT
