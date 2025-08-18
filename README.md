@@ -4,33 +4,33 @@
 
 With this Node module you can plug into the power and speed of [Kraken.io](http://kraken.io/) Image Optimizer.
 
-- [Node.js module for Kraken.io API](#nodejs-module-for-krakenio-api)
-  - [Installation](#installation)
-  - [Requirements](#requirements)
-  - [Dependencies](#dependencies)
-  - [Getting Started](#getting-started)
-  - [Downloading Images](#downloading-images)
-  - [How to use](#how-to-use)
-  - [Wait and Callback URL](#wait-and-callback-url)
-    - [Wait option](#wait-option)
-    - [Callback URL](#callback-url)
-  - [Promises](#promises)
-  - [Async/Await](#asyncawait)
-  - [Authentication](#authentication)
-  - [Usage - Image URL](#usage---image-url)
-  - [Usage - Image Upload](#usage---image-upload)
-  - [Usage - User status](#usage---user-status)
-  - [Lossy Optimization](#lossy-optimization)
-    - [PNG Images](#png-images)
-    - [JPEG Images](#jpeg-images)
-  - [Image Resizing](#image-resizing)
-  - [WebP Compression](#webp-compression)
-  - [PDF Compression](#pdf-compression)
-  - [Amazon S3, Rackspace Cloud Files, and Google Cloud Storage](#amazon-s3-rackspace-cloud-files-and-google-cloud-storage)
-    - [Amazon S3](#amazon-s3)
-    - [Rackspace Cloud Files](#rackspace-cloud-files)
-    - [Google Cloud Storage](#google-cloud-storage)
-- [LICENSE - MIT](#license---mit)
+-   [Node.js module for Kraken.io API](#nodejs-module-for-krakenio-api)
+    -   [Installation](#installation)
+    -   [Requirements](#requirements)
+    -   [Dependencies](#dependencies)
+    -   [Getting Started](#getting-started)
+    -   [Downloading Images](#downloading-images)
+    -   [How to use](#how-to-use)
+    -   [Wait and Callback URL](#wait-and-callback-url)
+        -   [Wait option](#wait-option)
+        -   [Callback URL](#callback-url)
+    -   [Promises](#promises)
+    -   [Async/Await](#asyncawait)
+    -   [Authentication](#authentication)
+    -   [Usage - Image URL](#usage---image-url)
+    -   [Usage - Image Upload](#usage---image-upload)
+    -   [Usage - User status](#usage---user-status)
+    -   [Lossy Optimization](#lossy-optimization)
+        -   [PNG Images](#png-images)
+        -   [JPEG Images](#jpeg-images)
+    -   [Image Resizing](#image-resizing)
+    -   [WebP Compression](#webp-compression)
+    -   [PDF Compression](#pdf-compression)
+    -   [Amazon S3, Rackspace Cloud Files, and Google Cloud Storage](#amazon-s3-rackspace-cloud-files-and-google-cloud-storage)
+        -   [Amazon S3](#amazon-s3)
+        -   [Rackspace Cloud Files](#rackspace-cloud-files)
+        -   [Google Cloud Storage](#google-cloud-storage)
+-   [LICENSE - MIT](#license---mit)
 
 ## Installation
 
@@ -214,11 +214,12 @@ kraken.url(opts, function (err, data) {
 })
 
 // with promises
-kraken.url(opts)
-    .then(data => {
+kraken
+    .url(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -285,11 +286,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -312,11 +314,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -339,11 +342,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -369,11 +373,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -446,8 +451,9 @@ kraken.userStatus(function (err, data) {
 }) //formatBytes(data,2)
 
 // with promise
-kraken.userStatus()
-    .then(data => {
+kraken
+    .userStatus()
+    .then((data) => {
         console.log('Success', {
             success: data.success,
             active: data.active,
@@ -456,9 +462,9 @@ kraken.userStatus()
             quota_remaining: formatBytes(data.quota_remaining, 2)
         })
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
-    })//formatBytes(data,2)
+    }) //formatBytes(data,2)
 
 // Optional function which will format the bytes value
 function formatBytes(value, decimal) {
@@ -525,11 +531,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -537,8 +544,8 @@ kraken.upload(opts)
 The `strategy` property can have one of the following values:
 
 -   `exact` - Resize by exact width/height. No aspect ratio will be maintained.
--   `portrait` - Exact width will be set, height will be adjusted according to aspect ratio.
--   `landscape` - Exact height will be set, width will be adjusted according to aspect ratio.
+-   `portrait` - Exact height will be set, width will be adjusted according to aspect ratio.
+-   `landscape` - Exact width will be set, height will be adjusted according to aspect ratio.
 -   `auto` - The best strategy (portrait or landscape) will be selected for a given image according to aspect ratio.
 -   `crop` - This option will crop your image to the exact size you specify with no distortion.
 
@@ -577,7 +584,6 @@ Kraken.io now supports PDF compression, allowing you to optimize PDF files with 
 
 Kraken API automatically determines the optimal compression settings based on the content type of the PDF (e.g., image-heavy, text-heavy, or mixed content). Additionally, users can optionally provide custom parameters to further control the compression process.
 
-
 ```javascript
 var opts = {
     file: '/path/to/image/document.pdf',
@@ -593,7 +599,6 @@ var opts = {
 -   `quality` - JPEG quality for embedded images. Acceptable values: **1-100**. Higher values preserve more detail but increase file size. Default is **65**.
 -   `dpi` - Resolution for images within the PDF. Default value is calculated based on the PDF type. Adjust this value based on your desired output quality.
 -   `downsampleType` - Method used to downsample images. Available options are `bicubic`, `average` and `subsample`
-
 
 ```javascript
 var opts = {
@@ -655,11 +660,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -704,7 +710,6 @@ var opts = {
     }
 }
 
-
 // with callback
 kraken.upload(opts, function (err, data) {
     if (err) {
@@ -715,11 +720,12 @@ kraken.upload(opts, function (err, data) {
 })
 
 // with promise
-kraken.upload(opts)
-    .then(data => {
+kraken
+    .upload(opts)
+    .then((data) => {
         console.log('Success. Optimized image URL: %s', data.kraked_url)
     })
-    .catch(err => {
+    .catch((err) => {
         console.log('Failed. Error message: %s', err)
     })
 ```
@@ -746,14 +752,14 @@ Ensure you have access to Google Cloud Platform (GCP) and an active project wher
 
 #### Mandatory Parameters:
 
-- `gcs_store.bucket` - Name of the destination bucket on your Google Cloud Storage account.
-- `gcs_store.credentials` - Your service account credentials (JSON format) to authenticate with GCS.
+-   `gcs_store.bucket` - Name of the destination bucket on your Google Cloud Storage account.
+-   `gcs_store.credentials` - Your service account credentials (JSON format) to authenticate with GCS.
 
 #### Optional Parameters:
 
-- `gcs_store.path` - Destination path in your GCS bucket (e.g., "images/layout/header.jpg"). Defaults to root `/`.
-- `gcs_store.acl` - Permissions of the destination object. This can be "publicRead" or "private". Defaults to "private".
-- `gcs_store.metadata` - Metadata you would like to assign to your GCS object (optimized image).
+-   `gcs_store.path` - Destination path in your GCS bucket (e.g., "images/layout/header.jpg"). Defaults to root `/`.
+-   `gcs_store.acl` - Permissions of the destination object. This can be "publicRead" or "private". Defaults to "private".
+-   `gcs_store.metadata` - Metadata you would like to assign to your GCS object (optimized image).
 
 #### Important:
 
